@@ -21,8 +21,10 @@ class _InicioLoadingState extends State<InicioLoading> {
       });
     });
     Future.delayed(Duration(seconds: 3), () {
+      debugPrint('Iniciando o APP com a tela de loading');
       if (!mounted) return;
       context.go('/home');
+      debugPrint('Indo para tela HOME!');
     });
   }
 
