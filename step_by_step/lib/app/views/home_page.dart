@@ -24,6 +24,16 @@ class HomePage extends StatelessWidget {
                   context.go('/state');
                 },
               ),
+              CardEstudos(
+                titulo: 'Provider',
+                subtitulo:
+                    'Praticando gerenciamento de estados com change notifier',
+                icone: Icons.sync,
+                onTap: () {
+                  debugPrint('Indo para Pág ChangeNotifier');
+                  context.go('/change-notifier');
+                },
+              ),
             ],
           ),
         ),
@@ -83,6 +93,8 @@ class CardEstudos extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 subtitulo,
                 style: const TextStyle(fontSize: 14, color: Colors.black54),
               ),
