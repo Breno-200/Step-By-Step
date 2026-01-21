@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:step_by_step/app/view_model/gerenciador-de-estado/change-notifier/change_notifier_example_controller.dart';
 
 class ChangeNotifierExample extends StatefulWidget {
   const ChangeNotifierExample({super.key});
@@ -9,11 +10,15 @@ class ChangeNotifierExample extends StatefulWidget {
 }
 
 class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
-  late final TextEditingController _nomeController;
+  final TextEditingController _nomeController = TextEditingController();
+  final ChangeNotifierExampleController _changeNotifierExampleController =
+      ChangeNotifierExampleController();
 
   @override
   void initState() {
-    _nomeController = TextEditingController();
+    _changeNotifierExampleController.addListener(() {
+      setState(() {});
+    });
     super.initState();
   }
 
@@ -41,13 +46,28 @@ class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
       ),
       body: Stack(
         children: [
-          ListView.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) => ListTile(
-              leading: CircleAvatar(child: Text(index.toString())),
-              title: Text('Contato $index'),
-            ),
-          ),
+          _changeNotifierExampleController.nome.isEmpty
+              ? Center(child: Text('Nenhum nome Cadastrado'))
+              : ListView.builder(
+                  itemCount: _changeNotifierExampleController.nome.length,
+                  itemBuilder: (context, index) => ListTile(
+                    leading: CircleAvatar(
+                      child: Text(
+                        _changeNotifierExampleController.nome[index][0],
+                      ),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        _changeNotifierExampleController.removerNome(
+                          nome: _changeNotifierExampleController.nome[index],
+                        );
+                      },
+                      icon: Icon(Icons.delete),
+                      color: Colors.red.shade300,
+                    ),
+                    title: Text(_changeNotifierExampleController.nome[index]),
+                  ),
+                ),
           Positioned(
             bottom: 0,
             right: 0,
@@ -81,6 +101,9 @@ class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
+                        _changeNotifierExampleController.adicionarNome(
+                          nome: _nomeController.text,
+                        );
                         _nomeController.clear();
                       },
                       child: CircleAvatar(
