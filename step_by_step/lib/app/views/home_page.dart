@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,6 +8,43 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      drawer: Drawer(
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(maxRadius: 30, child: Icon(Icons.person)),
+                  Text(
+                    'Breno Alves',
+                    style: GoogleFonts.workSans(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'brenoteste@gmail.com',
+                    style: GoogleFonts.workSans(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black45,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text('Perfil'),
+              leading: Icon(Icons.person),
+              onTap: () {}, // TODO: Adicionar pagina perfil
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(10),
@@ -25,7 +63,7 @@ class HomePage extends StatelessWidget {
                 },
               ),
               CardEstudos(
-                titulo: 'Provider',
+                titulo: 'ChangeNotifier',
                 subtitulo:
                     'Praticando gerenciamento de estados com change notifier',
                 icone: Icons.sync,

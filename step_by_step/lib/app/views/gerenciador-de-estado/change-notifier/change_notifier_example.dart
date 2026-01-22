@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:step_by_step/app/config/alert_padrao.dart';
 import 'package:step_by_step/app/view_model/gerenciador-de-estado/change-notifier/change_notifier_example_controller.dart';
 
 class ChangeNotifierExample extends StatefulWidget {
@@ -39,7 +40,7 @@ class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
           color: Colors.black87,
           iconSize: 30,
           onPressed: () {
-            context.go('home');
+            context.go('/home');
           },
           icon: Icon(Icons.home),
         ),
@@ -49,6 +50,7 @@ class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
           _changeNotifierExampleController.nome.isEmpty
               ? Center(child: Text('Nenhum nome Cadastrado'))
               : ListView.builder(
+                  padding: const EdgeInsets.all(10),
                   itemCount: _changeNotifierExampleController.nome.length,
                   itemBuilder: (context, index) => ListTile(
                     leading: CircleAvatar(
@@ -101,9 +103,18 @@ class _ChangeNotifierExampleState extends State<ChangeNotifierExample> {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        _changeNotifierExampleController.adicionarNome(
-                          nome: _nomeController.text,
-                        );
+                        if (_nomeController.text.isEmpty) {
+                          AlertPadrao.message(
+                            context,
+                            titulo: 'Campo Vazio',
+                            mensagem: 'O campo deve conter algum valor!',
+                          );
+                          debugPrint('Campo vazio!!');
+                        } else {
+                          _changeNotifierExampleController.adicionarNome(
+                            nome: _nomeController.text,
+                          );
+                        }
                         _nomeController.clear();
                       },
                       child: CircleAvatar(
