@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class UsuarioModel {
+class Usuario {
   final int id;
   final String nomeCompleto;
   final String nomeUsuario;
   final String email;
   final String senha;
 
-  UsuarioModel({
+  Usuario({
     required this.id,
     required this.nomeCompleto,
     required this.nomeUsuario,
@@ -15,14 +15,14 @@ class UsuarioModel {
     required this.senha,
   });
 
-  UsuarioModel copyWith({
+  Usuario copyWith({
     int? id,
     String? nomeCompleto,
     String? nomeUsuario,
     String? email,
     String? senha,
   }) {
-    return UsuarioModel(
+    return Usuario(
       id: id ?? this.id,
       nomeCompleto: nomeCompleto ?? this.nomeCompleto,
       nomeUsuario: nomeUsuario ?? this.nomeUsuario,
@@ -41,8 +41,8 @@ class UsuarioModel {
     };
   }
 
-  factory UsuarioModel.fromMap(Map<String, dynamic> map) {
-    return UsuarioModel(
+  factory Usuario.fromMap(Map<String, dynamic> map) {
+    return Usuario(
       id: map['id'] as int,
       nomeCompleto: map['nome_completo'] as String,
       nomeUsuario: map['nome_usuario'] as String,
@@ -53,15 +53,15 @@ class UsuarioModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UsuarioModel.fromJson(String source) => UsuarioModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Usuario.fromJson(String source) => Usuario.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UsuarioModel(id: $id, nomeCompleto: $nomeCompleto, nomeUsuario: $nomeUsuario, email: $email, senha: $senha)';
+    return 'Usuario(id: $id, nomeCompleto: $nomeCompleto, nomeUsuario: $nomeUsuario, email: $email, senha: $senha)';
   }
 
   @override
-  bool operator ==(covariant UsuarioModel other) {
+  bool operator ==(covariant Usuario other) {
     if (identical(this, other)) return true;
   
     return 

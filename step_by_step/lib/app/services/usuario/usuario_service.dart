@@ -1,25 +1,41 @@
-import 'dart:convert';
 
-import 'package:step_by_step/app/config/endpoints.dart';
+import 'package:step_by_step/app/interface/usuario_interface.dart';
 import 'package:step_by_step/app/models/usuario/usuario_model.dart';
 
-class UsuarioService {
-  final UsuarioModel usuario;
+class UsuarioService implements UsuarioInterface{
+  final Usuario usuario;
 
   UsuarioService({required this.usuario});
-
-  Future<List<dynamic>> getUsers() async {
-    try {
-      final response = await Endpoints.url.get(Endpoints.api);
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> files = response.data['files'];
-        final String content = files['gistfile1.txt']['content'];
-
-        return jsonDecode(content);
-      }
-      return [];
-    } catch (e) {
-      throw Exception("Erro ao Buscar Gists $e");
-    }
+  
+  @override
+  Future<bool> deleteUser(int id) {
+    // TODO: implement deleteUser
+    throw UnimplementedError();
   }
+  
+  @override
+  Future<Usuario> getUserById(int id) {
+    // TODO: implement getUserById
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<Usuario>> getUsers(int id) {
+    // TODO: implement getUsers
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<Usuario> postUser(Usuario usuario) {
+    // TODO: implement postUser
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<Usuario> putUser(int id, Usuario usuario) {
+    // TODO: implement putUser
+    throw UnimplementedError();
+  }
+
+
 }
