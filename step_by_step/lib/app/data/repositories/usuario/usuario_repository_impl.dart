@@ -38,10 +38,10 @@ class UsuarioRepositoryImpl implements UsuarioInterface {
       }
     } on DioException catch (e) {
       debugPrint('Erro no Dio ${e.message}');
-      return [];
+      rethrow;
     } catch (e) {
       debugPrint('Erro inesperado $e}');
-      return [];
+      rethrow;
     }
   }
 

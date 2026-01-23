@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:step_by_step/app/data/models/usuario/usuario_model.dart';
 import 'package:step_by_step/app/data/repositories/usuario/usuario_repository_impl.dart';
 
 class HomePage extends StatelessWidget {
@@ -76,6 +75,15 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   debugPrint('Indo para Pág ChangeNotifier');
                   context.go('/change-notifier');
+                },
+              ),
+              CardEstudos(
+                titulo: 'Provider',
+                subtitulo: 'Praticando gerenciamento de estados com Provider',
+                icone: Icons.sync,
+                onTap: () {
+                  debugPrint('Indo para Pág ChangeNotifier');
+                  context.go('/provider-example');
                 },
               ),
             ],
