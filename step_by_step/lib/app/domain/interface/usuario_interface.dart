@@ -1,4 +1,4 @@
-import 'package:step_by_step/app/models/usuario/usuario_model.dart';
+import 'package:step_by_step/app/data/models/usuario/usuario_model.dart';
 
 abstract class UsuarioInterface {
   Future<Usuario> getUserById(int id);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:step_by_step/app/config/alert_padrao.dart';
-import 'package:step_by_step/app/view_model/gerenciador-de-estado/change-notifier/change_notifier_example_controller.dart';
+import 'package:step_by_step/app/core/config/alert_padrao.dart';
+import 'package:step_by_step/app/ui/providers/gerenciador-de-estado/change-notifier/change_notifier_example_controller.dart';
 
 class ChangeNotifierExample extends StatefulWidget {
   const ChangeNotifierExample({super.key});

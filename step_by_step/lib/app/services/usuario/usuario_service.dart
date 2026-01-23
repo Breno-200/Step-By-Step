@@ -1,6 +1,6 @@
 
-import 'package:step_by_step/app/interface/usuario_interface.dart';
-import 'package:step_by_step/app/models/usuario/usuario_model.dart';
+import 'package:step_by_step/app/domain/interface/usuario_interface.dart';
+import 'package:step_by_step/app/data/models/usuario/usuario_model.dart';
 
 class UsuarioService implements UsuarioInterface{
   final Usuario usuario;

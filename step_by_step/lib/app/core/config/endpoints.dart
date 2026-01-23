@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:step_by_step/app/config/api_key.dart';
+import 'package:step_by_step/app/core/config/api_key.dart';
 
 class Endpoints {
   static String get api => 'https://api.github.com/gists/${ApiKey.idGist}';
