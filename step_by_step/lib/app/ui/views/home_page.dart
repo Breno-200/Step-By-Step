@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:step_by_step/app/data/models/usuario/usuario_model.dart';
+import 'package:step_by_step/app/data/repositories/usuario/usuario_repository_impl.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final usuarioApi = UsuarioRepositoryImpl();
+
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
@@ -40,7 +43,10 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: Text('Perfil'),
               leading: Icon(Icons.person),
-              onTap: () {}, // TODO: Adicionar pagina perfil
+              onTap: () async {
+                final listaUsers = await usuarioApi.getUsers();
+                debugPrint('Dados vindo da API : ${listaUsers.toList()}');
+              }, // TODO: Adicionar pagina perfil
             ),
           ],
         ),
