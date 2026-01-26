@@ -46,9 +46,29 @@ class UsuarioRepositoryImpl implements UsuarioInterface {
   }
 
   @override
-  Future<Usuario> postUser(Usuario usuario) {
-    // TODO: implement postUser
-    throw UnimplementedError();
+  Future<Usuario> postUser(Usuario usuario) async {
+    try {
+      final List<Usuario> lista = await getUsers();
+      lista.add(usuario);
+      final userJson = jsonEncode(lista.map((e) => e.toMap()).toList());
+      final data = {
+        'files': {
+          'user.json': {'content': userJson},
+        },
+      };
+      final response = await _dio.patch(_idGist.toString(), data: data);
+      if (response.statusCode == 200) {
+        return usuario;
+      } else {
+        throw Exception('Erro: ${response.statusCode}');
+      }
+    } on DioException catch (e) {
+      debugPrint('Erro no Dio ${e.message}');
+      rethrow;
+    } catch (e) {
+      debugPrint('Erro inesperado $e}');
+      rethrow;
+    }
   }
 
   @override

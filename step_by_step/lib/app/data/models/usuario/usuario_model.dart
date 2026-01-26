@@ -41,7 +41,7 @@ class Usuario {
     };
   }
 
-  factory Usuario.fromMap(Map<String, dynamic> map) {
+  factory Usuario.fromMap(Map<String, dynamic> map, ) {
     return Usuario(
       id: map['id'] as int,
       nomeCompleto: map['nome_completo'] as String,

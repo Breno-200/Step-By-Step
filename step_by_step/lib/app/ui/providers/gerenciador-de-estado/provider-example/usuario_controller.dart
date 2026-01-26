@@ -26,7 +26,40 @@ class UsuarioController extends ChangeNotifier {
       }
     } catch (e) {
       debugPrint('Erro encontrado: $e');
-      _errorMensagem = 'Algo deu errado! Tente Novamente.';
+      _errorMensagem = 'Algo deu errado.';
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<Usuario> criarUsuario({
+    required String nomeCompleto,
+    required String nomeUsuario,
+    required String email,
+    required String senha,
+  }) async {
+    _errorMensagem = null;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final listaIds = _users.map((e) => e.id).toList();
+      int idNovo = _users.isEmpty ? 1 : listaIds.reduce((int atual,int proximo) => atual > proximo ? atual : proximo ) + 1;
+      final usuarioNovoEnviar = Usuario(
+        id: idNovo,
+        nomeCompleto: nomeCompleto,
+        nomeUsuario: nomeUsuario,
+        email: email,
+        senha: senha,
+      );
+      final newUser = await _repository.postUser(usuarioNovoEnviar);
+      _users.add(newUser);
+      return newUser;
+    } catch (e) {
+      debugPrint('Erro encontrado: $e');
+      _errorMensagem = 'Algo deu errado.';
+      rethrow;
     } finally {
       _isLoading = false;
       notifyListeners();
